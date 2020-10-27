@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operator.html</title>
+    <script>
+        /*
+            1) 산술연산자: + - * / %  (우선순위: *,/,& > +,-)
+        */
+        document.write('<h2>산술연산자</h2>');
+        document.write('4%2*5-10='+(4%2*5-10));
+        document.write('<br/>7/2='+(7/2)); //자바) 7/2 = 3
+
+        /*
+            2) 비교연산자: > < >= <= ! ==  (우선순위: 모두 동일)
+                - 조건식에서 0, null, false는 false 반환, 그 외 모두 true
+        */
+        document.write('<h2>비교연산자</h2>');
+        document.write('가나나라' > '다라나'); //자바)X / 자바스크립트) 유니코드값으로 비교
+        
+        if(null == false)
+            document.write('<br/>null == false는 참이다');
+        else
+        document.write('<br/>null == false는 거짓이다'+"<br/>");
+
+        /*
+            3) 동등연산자(==) vs 일치연산자(===)
+                == : 자료형이 다르더라도 내부적 강제 형변환해서 비교
+                === : 강제 형변환X. 자료형과 값이 정확히 같아야 한다
+        */
+        document.write((0 == '0')+"<br/>"); //true
+        document.write((0 === '0')+"<br/>"); //false
+        document.write((false == '0')+"<br/>"); //true
+        document.write((false === '0')+"<br/>"); //false
+
+        /*
+            4) 논리연산자: &&,||,!  (우선순위: ! > && > ||)
+        */
+        document.write('<h2>논리연산자</h2>');
+        document.write(3>2 || 5<10 && !(3-4));
+
+        /*
+            5) 증감연산자: ++ --
+        */
+        num = 10;
+        document.write("<br/>"+'num++: '+ num++);
+        document.write("<br/>"+'++num: '+ ++num );
+        document.write("<br/>"+'num: ' + num);
+
+        /*
+            단축표현식: +=, -=, *=, /=, %=
+        */        
+        document.write('<h2>단축표현식</h2>');
+        document.write(num%5);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+

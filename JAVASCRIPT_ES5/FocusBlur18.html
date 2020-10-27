@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusBlur18.html</title>
+    <script>
+        var txt,pwd;
+        window.addEventListener('load',function(){
+            txt = document.getElementById('txt');
+            pwd = document.getElementById('pwd');
+        });
+
+        function fnUser(flag,obj){
+            if(flag==1){//포커스를 얻었을때
+                if(obj.value=='아이디') {
+                    obj.value='';
+                    obj.style.color='black';
+                }
+            }
+            else{//포커스를 잃었을때
+                if(obj.value=='') {
+                    obj.value='아이디';
+                    obj.style.color='lightgray';
+                }
+            }
+        }
+
+        function fnPass(flag){
+            if(flag==1){ //type="text" 에서 focus이벤트 발생
+                txt.style.display='none';
+                pwd.style.display='';//보이기
+                pwd.focus();
+            }
+            else{//type="password" 에서 blur이벤트 발생
+                if(pwd.value.length==0){
+                    pwd.style.display='none';
+                    txt.style.display='';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>focus 및 blur이벤트</legend>
+        <input type="text" onfocus="console.log('focus이벤트 발생-포커스를 얻을때');" onblur="console.log('blur이벤트 발생-포커스를 잃을때');" />
+    </fieldset>
+
+
+    <fieldset>
+        <legend>focus 및 blur이벤트 예제(HTML5의 속성 이용-IE에서만 적용됨)</legend>
+        아이디 <input type="text" placeholder="아이디" />
+        비밀번호 <input type="password" placeholder="비밀번호" />
+    </fieldset>
+    <fieldset>
+        <legend>focus 및 blur이벤트 예제(자바스크립트로 구현)</legend>
+
+        아이디 <input type="text" value="아이디" style="color:lightgray" onfocus="fnUser(1,this)" onblur="fnUser(2,this)" />
+
+        비밀번호 <input type="text" value="비밀번호" id="txt" style="color:lightgray" onfocus="fnPass(1)" /><input type="password" onblur="fnPass(2)"  id="pwd"  style="display:none"/>
+    </fieldset>
+</body>
+</html>

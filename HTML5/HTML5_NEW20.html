@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5_NEW20.html</title>
+</head>
+<body>
+    <fieldset>
+        <legend>HTML5에 새롭게 추가된 태그나 속성들</legend>
+        <h2>텍스트에 하이라이트 효과주는 태그(mark)</h2>
+        <p>
+            미국 신종 <mark>코로나바이러스</mark> 감염증(코로나19) 환자 중 3분의 1에서 뇌질환이 나타났으며,<br/> 
+            사망에 이를 확률도 뇌질환이 없는 환자의 7배에 달한다는 연구 결과가 나왔다.<br/>
+            미국 <mark>뉴욕타임스(NYT)</mark>에 따르면 시카고에 있는 노스웨스턴 메디슨 병원의<br/>
+            연구진은 3월 5일∼4월 6일 코로나 입원 환자 509명 중 거의 3분의 1에서<br/>
+            정신 착란, 혼동, 무반응 같은 <span style="background-color:yellow;">뇌질환</span>이 나타났다고 밝혔다.
+
+        </p>
+        <h2>진행을 표시하는 태그(progress)</h2>
+        <progress value="100" max="200"  style="width:300px;height:50px"></progress>
+        <h2>자동 완성 태그(datalist)</h2>
+        <label for="keyword">검색어를 입력하세요</label>
+        <input type="search" id="keyword" list="data_list"/>
+        <datalist id="data_list">
+            <option value="코로나"></option>
+            <option value="코로나19"></option>
+            <option value="코카콜라"></option>
+            <option value="코알라"></option>
+            <option value="HTML5"></option>
+            <option value="Hybrid"></option>
+            <option value="NAVER"></option>
+            <option value="NATE"></option>
+        </datalist>
+        <h2>이미지를 그룹화 하는 태그(figure)</h2>
+        <figure>
+            <figcaption>자바 이미지1</figcaption>
+            <img src="../Images/java-logo.jpg" alt="첫번째 이미지" width="100" height="50"/>
+        </figure>
+        <figure>
+            <figcaption>자바 이미지2</figcaption>
+            <img src="../Images/java-logo.jpg" alt="두번째 이미지" width="100" height="50"/>
+        </figure>
+        <h2>새롭게 추가된 속성들</h2>
+        <h3>multiple,accept속성</h3>
+        <input type="file" multiple accept="image/png,image/jpeg"/>
+        <h3>autofocus속성</h3>
+        <input type="text" autofocus/>
+        <h3>contenteditable속성</h3>
+        <p contenteditable="true">
+            미국 신종 <mark>코로나바이러스</mark> 감염증(코로나19) 환자 중 3분의 1에서 뇌질환이 나타났으며,<br/> 
+            사망에 이를 확률도 뇌질환이 없는 환자의 7배에 달한다는 연구 결과가 나왔다.<br/>
+            미국 <mark>뉴욕타임스(NYT)</mark>에 따르면 시카고에 있는 노스웨스턴 메디슨 병원의<br/>
+            연구진은 3월 5일∼4월 6일 코로나 입원 환자 509명 중 거의 3분의 1에서<br/>
+            정신 착란, 혼동, 무반응 같은 <span style="background-color:yellow;">뇌질환</span>이 나타났다고 밝혔다.
+
+        </p>
+        <h3>hidden속성</h3>
+        <input type="button" value="버튼" hidden/>
+        <h3>required속성</h3>
+        <form action="https://www.nate.com">
+                <input type="text" name="name" required/>
+                남자 <input type="radio" name="gender" value="남자" required/>
+                여자 <input type="radio" name="gender" value="여자" required/>
+                동의 <input type="checkbox" name="accept" value="YES" required/>
+                <input type="submit" value="확인"/>
+        </form>
+        <h3>placeholder속성</h3>
+        아이디 <input type="text" placeholder="아이디"/>
+        비밀번호 <input type="password" placeholder="비밀번호"/>
+    </fieldset>
+</body>
+</html>

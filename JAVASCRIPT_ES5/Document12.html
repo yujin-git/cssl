@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document12.html</title>
+    <script>
+        /*
+           DOM(Document Object Model)객체 얻어오기
+   
+           1. 태그명으로 얻어 오기
+            document.getElementsTagName("태그명");
+   
+           2. name속성으로 얻어 오기
+            document.getElementsByName("name속성 값");
+   
+           3. 클래스명으로 얻어오기
+            document.getElementsByClassName("클래스명")
+
+           4. id값으로 얻어 오기
+            document.getElementById("id속성값");
+           
+          
+            
+           1,2,3번은 배열 형태로 반환 단,해당 객체가 없을때
+           길이가 0인 배열형태 반환. 즉 var 배열명 = new Array();//[]와 비슷.
+           4번은 해당 객체로 반환, 해당 엘리먼트가
+           존재 하지 않을때 null을 반환
+           */
+           //버튼 클릭시 체크한 값과 입력값 출력하는 함수
+           function fnGetElementsByTag(){
+               var inputs=document.getElementsByTagName('input');
+               console.log(typeof inputs);//object
+               console.log('%O',inputs);//HTMLCollection:length속성,item()함수,namedItem()함수
+               console.log('input태그의 총수:',inputs.length);
+               console.log(inputs.item(0).value);//POL
+               console.log(inputs[0].value);//POL  
+               //동일이름이 여러개인 경우 무조건 첫번째 노드(요소)만 반환            
+               console.log(inputs.namedItem('inter').value);//POL 
+               console.log(inputs.namedItem('txt').value);
+               //배열에 적용할 수 있는 forEach()문 적용 해보기
+               //inputs.forEach(function(item){console.log(item);});//[x]
+               //HTMLCollection타입에 forEach적용하기
+               //HTMLCollection.prototype.forEach = Array.prototype.forEach;
+               //console.log('[HTMLCollection에 추가한 forEach함수로 요소 출력]');
+               //inputs.forEach(function(item){console.log(item.value);});//[o]
+               var checkString = '',textString;
+               for(var i=0; i < inputs.length;i++){
+                   //체크박스중 체크된것만
+                    /*※자스에서 checked속성의 체크 여부 판단시에는
+                     true혹은 false로 판단*/
+                    if(inputs[i].type=='checkbox' && inputs[i].checked==true){
+                        checkString+=codeToText(inputs[i].value)+ ' ';
+                    }
+                    if(inputs[i].type=='text' && inputs[i].name=='txt'){
+                        textString=inputs[i].value;
+                    }
+               }//////////////for
+               console.log('체크된 값:'+checkString);
+               console.log('입력한 값:',textString);
+           }
+           //코드값을 일반 텍스트로 변환하는 함수]
+           var codeToText = function(code){
+                switch(code){
+                    case 'POL':return '정치';
+                    case 'ECO':return '경제';
+                    default:return '연예';
+                }
+           };
+           //체크박스에서 체크된 것은 해제
+           //체크 안된것은 체크하는 함수
+           function fnGetElementsByName(){
+               var names=document.getElementsByName('inter');//NodeList
+               
+               console.log('자료형:',typeof names);
+               console.log(names);
+               console.log('%O',names);
+               console.log(names.item(0).value);
+               console.log(names[0].value);
+               //체크된 애는 체크 해제,체크 안된 애는 체크]
+                //자스로 체크 설정시에는 checked="checked" 나 checked=true;
+                //자스로 체크 해제시에는 checked=null 나 checked=false;
+                //단,조건 판단시에는 반드시 true나 false 로 판단해야 된다.
+               names.forEach(function(item){
+                    if(item.checked==true) item.checked=false;//item.checked=null;
+                    else item.checked=true;//혹은 item.checked='checked';
+               });
+           }
+           function fnGetDomain(){
+               var aTag=document.getElementsByTagName('a');
+               console.log(aTag.length);
+                //HTMLCollection
+                //HTMLCollection타입에 forEach적용하기
+                HTMLCollection.prototype.myForEach=Array.prototype.forEach;
+                aTag.myForEach(function(item){
+                    if(item.href.indexOf('www')!=-1){
+                        console.log(item.href);
+                    }
+                });
+           }
+           function fnGetElementsClass(){
+               var portals=document.getElementsByClassName('portal');
+               console.log('%O',portals);//HTMLCollection
+               HTMLCollection.prototype.forEach= Array.prototype.forEach;
+               portals.forEach(function(node){
+                   //시작태그와 종료태그 사이의 값 읽어오기
+                   console.log(node.innerHTML);
+               });
+           }
+           function fnChangeImage(num){
+               var img=document.getElementById('image');
+               img.src='../Images/'+num+'.jpg';
+           }
+           var fnCopy = function(){
+               document.getElementById('dest').value=document.getElementById('src').value;
+               document.getElementById('destTxt1').value=document.getElementById('srcTxt1').value;
+               document.getElementById('destTxt2').value=document.getElementById('srcTxt2').value;
+           };
+    </script>
+</head>
+<body>
+    <h2>태그명으로 얻기</h2>
+    <input type="checkbox" name="inter" value="POL" />정치
+    <input type="checkbox" name="inter" value="ECO" />경제
+    <input type="checkbox" name="inter" value="ENT" checked />연예
+    <input type="text" name="txt" />
+    <input type="button" value="태그명으로 DOM객체 얻기" onclick="fnGetElementsByTag()" />
+
+    <h2>이름으로 얻기</h2>
+    <input type="button" value="NAME속성에 지정한 값으로 DOM객체 얻기" onclick="fnGetElementsByName()" />
+
+    <h2>태그명으로 객체 얻기2</h2>
+    <ul>
+        <li><a href="http://www.naver.com">네이버</a></li>
+        <li><a href="http://www.daum.net">다음</a></li>
+        <li><a href="http://www.nate.com">네이트</a></li>
+    </ul>
+    <button onclick="fnGetDomain()">도메인 얻어오기</button>
+    <h2>클래스명으로 객체 얻기</h2>
+    <ul>
+        <li><a href="#" class="portal">네이버</a></li>
+        <li><a href="#" class="portal">다음</a></li>
+        <li><a href="#" class="portal">네이트</a></li>
+    </ul>
+    <button onclick="fnGetElementsClass()">클래스명으로 DOM객체 얻어오기</button>
+
+    <h3>동적으로 이미지 교체(ID로 DOM객체 얻기)</h3>
+    <fieldset>
+        <legend>이미지 교체</legend>
+        <a href="javascript:fnChangeImage(1)">1번 이미지</a>
+        <a href="javascript:fnChangeImage(2)">2번 이미지</a>
+        <a href="javascript:fnChangeImage(3)">3번 이미지</a>
+        <a href="javascript:fnChangeImage(4)">4번 이미지</a>
+        <hr />
+        <img id="image" src="#" alt="이미지교체" style="width:200px;height:200px" />
+    </fieldset>
+
+    <fieldset>
+        <legend>전화번호 복사</legend>
+        <select id="src">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+        -
+        <input type="text" size="4" maxlength="4" id="srcTxt1" />
+        -
+        <input type="text" size="4" maxlength="4" id="srcTxt2" />
+        <br />
+        <input type="button" value="복사" onclick="fnCopy()" />
+        <br />
+        <select id="dest">
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="017">017</option>
+            <option value="019">019</option>
+        </select>
+        -
+        <input type="text" size="4" maxlength="4" id="destTxt1" />
+        -
+        <input type="text" size="4" maxlength="4" id="destTxt2" />
+
+    </fieldset>
+</body>
+</html>

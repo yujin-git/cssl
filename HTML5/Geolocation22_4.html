@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation22_4.html</title>
+</head>
+<body>
+    <fieldset>
+        <legend>현재 위치를 지도에 표시하기</legend>
+        <div id="map" style="width: 500px;height: 400px; background-color: yellow;"></div>
+    </fieldset>
+    <fieldset>
+        <legend>주소로 위치 찾기</legend>
+        <div>
+            <input type="address" type="text"/>
+            <button onclick="searchByAddress();">주소명으로 지도 찾기</button>
+        </div>
+    </fieldset>
+
+    <!--샘플코드-->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8f5e8ba5f65a4ece3fee8bede31e511"></script>
+    <script>
+        
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = { 
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+    </script>
+</body>
+</html>
